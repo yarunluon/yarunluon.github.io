@@ -99,7 +99,7 @@ define([
 			})
 
 			// Show next layout
-			var nyanCatLayout = new NyanCatLayout(terminal);
+			var nyanCatLayout = new NyanCatLayout(terminal, events);
 			setTimeout(nyanCatLayout.show, sleepCounter + MAX_SECONDS_WAIT);
 		};
 

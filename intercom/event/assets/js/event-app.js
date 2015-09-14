@@ -16,10 +16,16 @@ define([
 		terminal.setTextColor(BRIGHT_GREEN);
 
 		this.start = function() {
-			$.when(events.fetch()).done(function() {
+			$.when(events.fetch())
+
+			.done(function() {
 				// Data loaded. Start app
 				var overviewLayout = new OverviewLayout(terminal, events);
 				overviewLayout.show();
+			})
+
+			.fail(function() {
+				console.error("failed to get events");
 			})
 		}
 	}

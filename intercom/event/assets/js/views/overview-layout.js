@@ -2,11 +2,6 @@ define(['jquery', 'views/hacking-layout'], function($, HackingLayout) {
 	'use strict';
 
 	return function(terminal, events) {
-		var goToHacking = function() {
-			hackingLayout.show();
-		}
-
-		var $terminal = $('#terminal');
 
 		this.show = function() {
 			terminal.clear();
@@ -31,7 +26,7 @@ define(['jquery', 'views/hacking-layout'], function($, HackingLayout) {
 
 			// Any keypress loads next screen
 			terminal.input('Press any key to begin hacking', function(input) {});
-			$terminal.one('keypress', function() {
+			$(document).one('keypress', function() {
 				var hackingLayout = new HackingLayout(terminal, events);
 				hackingLayout.show();
 			});
