@@ -1,0 +1,75 @@
+/*****************
+* Dino panel component
+******************/
+.dino-panel-container {
+		position: relative;
+		display: inline-block;
+		margin: {
+			left: 25px;
+			top: 25px;
+		}
+}
+
+.dino-panel {
+	height: $dino-panel-size;
+	width: $dino-panel-size;
+	position: relative;
+	border-radius: 10px;
+
+	box-shadow: 0 3px 5px 2px rgba(0,0,0,0.5);
+	overflow: hidden;
+
+	& img {
+		margin: 0 auto;
+		max-width: $dino-panel-size;
+		max-height: $dino-panel-size - $info-box-height;
+		display: block;
+	}
+}
+
+.info-box-container {
+	position: absolute;
+	bottom: 0;
+	height: $info-box-height;
+	background-color: black;
+	width: 100%;
+}
+
+.booster {
+	position: absolute;
+	top: 0 - $badge-size/5;
+	right: 0 - $badge-size/5;
+	height: $badge-size;
+	width: $badge-size;
+	background-color: $color-green__dinosaur;
+	border-radius: 50%;
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.50);
+}
+
+.booster-value {
+	@include vertical-align();
+
+	width: 100%;
+	text-align: center;
+	font-size: 22px;
+}
+
+.dino-name {
+	@include vertical-align(45%);
+
+	font-size: 24px;
+	text-align: center;
+	color: #e0e0e0;
+	font-style: italic;
+	width: 100%;
+}
+
+.dino-clade {
+	@include vertical-align(80%);
+
+	color: #5b7035;
+	font-size: 16px;
+	text-align: center;
+	line-height: 1.3em;
+	width: 100%;
+}

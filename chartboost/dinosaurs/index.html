@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			Chartboost - Dinosaur Database
+		</title>
+		<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./assets/css/dinosaur.css">
+	</head>
+	<body>
+		<div id="root-view" class="container-fluid">
+			<div class="row row-fluid">
+				<div class="nav-container col-md-3">
+					<header>
+						<div id="banner-region"></div>
+						<section>
+							<div id="nav-region">
+						</section>
+					</header>
+				</div>
+				<div class="display-container col-md-9">
+					<div id="display-region"></div>
+				</div>
+			</div>
+		</div>
+
+		<script id="banner-template" type="text/template">
+				<img src="assets/img/logo.png" class="logo" alt="Chartboost">
+				<h1>Dinosaur Database</h1>
+		</script>
+
+		<script id="dinosaur-template" type="text/template">
+				<div class="dino-panel">
+					<img src="<%= image %>" alt="<%= name %>">
+					<div class="info-box-container">
+							<div class="dino-name"><%= name %></div>
+							<div class="dino-clade"><%= clade %></div>
+					</div>
+				</div>
+				<% if (boosters.length) { %>
+				<div class="booster">
+					<div class="booster-value"><%= boosters.length %></div> 
+				</div>
+				<% } %>
+		</script>
+
+		<script id="nav-template" type="text/template">
+			<div class="preamble">
+				At Chartboost, the only thing we love as much as mobile games is dinosaurs. We've collected our staff's favorites and made them searchable by geological period.
+			</div>
+			<nav>
+				<form>
+					<div class="form-group">
+						<select class="form-control nav-selector">
+							<option value="" disabled selected>Select a Period</option>
+							<% _.each(items, function(item) { %>
+							<option value="<%= item.id %>"><%= item.name %></option>
+							<% }) %>
+						</select>
+					</div>
+				</form>
+			</nav>
+		</script>
+
+		<script id="no-period-template" type="text/template">
+			<div class="status-message">Select a time period.</div>
+		</script>
+
+		<script id="loading-template" type="text/template">
+			<div class="status-message">
+				Digging up dinosaurs...
+			</div>
+		</script>
+
+		<script id="no-dinosaurs-template" type="text/template">
+			<div class="status-message">No dinosaurs found.</div>
+		</script>
+
+		<script id="extinction-event-template" type="text/template">
+			<div class="status-message">Extinction event occurred. Try again later.</div>
+		</script>
+		
+		<script data-main="./assets/js/require_main" src="./assets/js/vendor/require.js"></script>
+	</body>
+</html>

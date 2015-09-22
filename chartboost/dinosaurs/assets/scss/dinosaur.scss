@@ -1,0 +1,81 @@
+@import "variables";
+@import "mixins";
+@import "dino-panel";
+
+html {
+	height: 100.01%;
+}
+
+body {
+	background: white;
+	font-family: $font-family-base;
+}
+
+h1 {
+	font-size: 37px;
+}
+
+header {
+	padding: 25px;
+}
+
+html,
+body,
+#root-view,
+.nav-container {
+	height: 100%;
+}
+
+.logo {
+	height: 20px;
+	opacity: 0.6;
+}
+
+.nav-container {
+	background-color: $color-green__dinosaur;
+	color: $color-white__dirty;
+}
+
+.nav-selector {
+	background-color: $color-gray__medium;
+	border-radius: 15px;
+	border: none;
+	font-weight: bold;
+	margin-top: 25px;
+	color: white;
+	height: 50px;
+	font-size: 18px;
+}
+
+.display-container {
+	height: 100%;
+}
+
+.preamble {
+	font-size: 16px;
+	line-height: 1.5em;
+}
+
+.status-message {
+	@media (min-width: 992px) {
+		@include vertical-align();
+	}
+
+	color: $color-gray__medium;
+	font-size: 45px;
+	text-align: center;
+	width: 100%;
+}
+
+@media (min-width: 992px) {
+	.row-fluid {
+		height: 100%;
+	}
+}
+
+@media (max-width: 991px) {
+	.dinosaurs-fluid {
+		text-align: center;
+	}	
+}
+

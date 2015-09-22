@@ -1,0 +1,12 @@
+/*****************
+* Mixins
+******************/
+
+// http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+@mixin vertical-align($top: 50%) {
+  position: absolute;
+  top: $top;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
