@@ -7,6 +7,6 @@ define(['marionette'], function(Marionette) {
 
 	return /** @alias module:view/ExtinctionEvent */ Marionette.ItemView.extend({
 
-		template: '#extiction-event-template'
+		template: '#extinction-event-template'
 	});
 });
