@@ -7,15 +7,15 @@ define(['backbone'], function(Backbone){
 
 	return /** @alias module:model/Deals */ Backbone.Collection.extend({
 
-		/** 
+		/**
 		* Initializes the Collection
 		* @param {Object} [options] - Configuration options
-		* @param {string} [options.centre=bondijunction] - The deals will be grabbed for this centre. 
+		* @param {string} [options.centre=bondijunction] - The deals will be grabbed for this centre.
 		* @param {boolean} [options.mockup=true] - If true, will massage the response to match the mockup
 		*/
 		initialize: function(models, options) {
 			this.globalCh = Backbone.Wreqr.radio.channel('global');
-			
+
 			options = _.defaults(options || {}, {
 				centre: 'bondijunction',
 				mockup: this.globalCh.reqres.request('mockup')
@@ -26,7 +26,7 @@ define(['backbone'], function(Backbone){
 		},
 
 		url: function() {
-			return 'http://www.westfield.com.au/api/deal/master/deals.json?state=published&centre=' + this.centre;
+			return '//www.westfield.com.au/api/deal/master/deals.json?state=published&centre=' + this.centre;
 		},
 
 		parse: function(response) {

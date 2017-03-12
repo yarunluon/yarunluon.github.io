@@ -28,7 +28,7 @@ define(['backbone', 'models/centre'], function(Backbone, Centre) {
 		model: Centre,
 
 		url: function() {
-			return 'http://www.westfield.com.au/api/centre/master/centres.json?state=' + this.state;
+			return '//www.westfield.com.au/api/centre/master/centres.json?state=' + this.state;
 		},
 
 		parse: function(response) {

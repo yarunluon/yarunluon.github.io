@@ -1,0 +1,230 @@
+@import "variables";
+@import "mixins";
+
+/************************
+* Extendable classes
+*************************/
+.small-print {
+	font-size: .9em;
+}
+
+.transition {
+	transition: outline ease-in-out .15s, background-color ease-in-out .15s;
+}
+
+/************************
+* Element styles
+*************************/
+section, header, nav {
+	// For non HTML5 compliant browsers
+	display: block;
+}
+
+body {
+	padding-top: 30px;
+}
+
+a {
+	&:hover, &:focus {
+		text-decoration: none;
+	}
+}
+
+.westfield-logo {
+	width: 200px;
+}
+
+/************************
+* Navigation tabs
+*************************/
+.nav-tabs {
+	border-bottom: none;
+
+	& > li {
+		padding-right: 5px;
+
+		& > a {
+			@include linear-gradient();
+
+			border: 1px solid $color-gray__medium-dark;
+			border-bottom: 1px solid transparent;
+			text-align: center;
+			padding: 7px 20px;
+			color: $color-gray__dark;
+			box-shadow: 4px 0px 5px 0px #f5f5f5;
+		}
+
+		&.active > a {
+			font-weight: bold;
+			background: none;
+		}
+	}
+}
+
+/************************
+* Search region
+*************************/
+#search-region {
+	.input-group-addon {
+		background-color: white;
+		border-right: none;
+		box-shadow: inset 0 1px 0px rgba(0,0,0,.075);
+	}
+
+	.form-control {
+		border-left: none;
+		box-shadow: inset 0 1px 0px rgba(0,0,0,.075);
+	}
+}
+
+.input-group.focus {
+	#search-button {
+		// Make search button have same styles as search input
+		box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.075);
+		border: thin solid #ccc;
+		border-right: none;
+		border-color: #66afe9;
+		outline: 0;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	}
+}
+
+/************************
+* Centre styles
+*************************/
+#centres-region {
+	padding-top: 5px;
+}
+
+#centres-region .panel {
+	border: none;
+	margin-bottom: 1px;
+}
+
+#centres-region .panel-default {
+	& > .panel-heading {
+		background-color: $color-gray__dark;
+		padding: 0;
+		border-top: {
+			left-radius: 0;
+			right-radius: 0;
+		}
+	}
+}
+
+.centre {
+	a {
+		color: white;
+		display: block;
+		padding: 10px 15px;
+
+		&:hover {
+			background-color: lighten($color--secondary, 5%);
+		}
+
+		&:focus {
+			@extend .transition;
+
+			outline: medium solid darken($color--secondary, 10%);
+			background-color: lighten($color--secondary, 10%);
+		}
+	}
+
+	.active & {
+		background-color: $color--primary;
+
+		a:hover {
+			background-color: lighten($color--primary, 5%);
+		}
+
+		a:focus {
+			@extend .transition;
+
+			outline: medium solid darken($color--primary, 10%);
+			background-color: lighten($color--primary, 10%);
+		}
+
+		.glyphicon-plus {
+			display: none;
+		}
+
+		.glyphicon-minus {
+			display: inline-block;
+		}
+	}
+
+	.glyphicon-plus {
+		display: inline-block;
+	}
+
+	.glyphicon-minus {
+		display: none;
+	}
+
+	.glyphicon {
+		color: white;
+	}
+}
+
+/************************
+* Deal styles
+*************************/
+.list-group-item {
+	border: none;
+	margin-bottom: 5px;
+
+	&:hover,
+	&:nth-child(odd):hover {
+		background-color: darken(white, 5%);
+	}
+
+	&:nth-child(odd) {
+		background-color: $color-gray__light;
+	}
+
+	&.focus {
+		@extend .transition;
+
+		outline: medium solid darken($color-gray__light, 20%);
+		background-color: darken($color-gray__light, 10%);
+	}
+
+	a {
+		outline: none;
+	}
+}
+
+.deal-title {
+	color: $color--secondary;
+	margin: {
+		top: 5px;
+		bottom: 5px;
+	}
+}
+
+.logo {
+	max-width: 150px;
+	max-height: 60px;
+	float: right;
+	@media (max-width: 767px) {
+		float: left;
+	}
+}
+
+.view-more {
+	@extend .small-print;
+
+	white-space: nowrap;
+}
+
+.deal-dates {
+	@extend .small-print;
+
+	color: $color-gray__medium;
+}
+
+.no-deals {
+	background-color: $color-gray__light;
+	color: $color-gray__medium;
+	height: 100px;
+}

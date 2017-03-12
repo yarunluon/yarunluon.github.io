@@ -11,7 +11,8 @@ define(['marionette'], function(Marionette) {
 			nav: '#nav-region',
 			search: '#search-region',
 			centres: '#centres-region',
-			deals: '#deals-region'
+			deals: '#deals-region',
+			message: '#message'
 		}
 	});
 });

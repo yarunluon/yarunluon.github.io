@@ -28,7 +28,7 @@ define(['backbone', 'models/state'], function(Backbone, State) {
 		model: State,
 
 		url: function() {
-			return 'http://www.westfield.com.au/api/centre/master/states.json?country=' + this.country;
+			return '//www.westfield.com.au/api/centre/master/states.json?country=' + this.country;
 		},
 
 		parse: function(response) {

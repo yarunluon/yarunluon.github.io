@@ -7,19 +7,21 @@ define([
 	'models/centres',
 	'models/states',
 	'models/deals',
+	'models/message',
 	'views/westfield-layout',
 	'views/tabs',
 	'views/search',
 	'views/centres',
 	'views/banner',
 	'views/deals',
+	'views/message',
 	'crossdomain'
-	], function(Marionette, Centres, States, Deals, WestfieldLayout, TabsView, SearchView, CentresView, BannerView, DealsView, crossdomain) {
+], function(Marionette, Centres, States, Deals, Message, WestfieldLayout, TabsView, SearchView, CentresView, BannerView, DealsView, MessageView, crossdomain) {
 		'use strict';
 
 		return /** @alias module:Westfield */ Marionette.Application.extend({
 
-			/** 
+			/**
 			* Initializes the Westfield application
 			* @param {Object} [options] - Configuration options
 			* @param {boolean} [options.bootstrap=true] - If true, uses the json written to the html. Otherwise, calls the APIs upon pageload
@@ -55,16 +57,16 @@ define([
 
 			onStart: function() {
 				if (Backbone.history) {
-					Backbone.history.start();	
+					Backbone.history.start();
 				}
 
 				if (this.bootstrap) {
-					this.showLayout();	
+					this.showLayout();
 				} else {
 					// Call all three apis
 					$.when(
-						this.states.fetch(), 
-						this.centres.fetch(), 
+						this.states.fetch(),
+						this.centres.fetch(),
 						this.deals.fetch()
 					)
 
@@ -79,6 +81,8 @@ define([
 			},
 
 			showLayout: function() {
+				var welcomeMessage = this.globalCh.reqres.request('welcomeMessage');
+
 				// Instantiate views
 				var tabsView = new TabsView({ collection: this.states });
 				var centresView = new CentresView({ collection: this.centres });
@@ -90,6 +94,7 @@ define([
 				this.rootView.nav.show(tabsView);
 				this.rootView.centres.show(centresView);
 				this.rootView.deals.show(dealsView);
+				this.rootView.message.show(new MessageView({ model: new Message(welcomeMessage) }));
 			},
 
 			/** A new centre is loaded so new deals need to be fetched */
@@ -122,24 +127,36 @@ define([
 			setCommands: function() {
 				this.globalCh.commands.setHandler('show:centres', _.bind(this.executeShowTab, this));
 				this.globalCh.commands.setHandler('show:deals', _.bind(this.executeShowDeals, this));
+				this.globalCh.commands.setHandler('show:message', _.bind(this.executeShowMessage, this));
 			},
 
 			executeShowTab: function(state) {
 				this.centres.state = state;
-				this.centres.fetch({ reset: true});
+				this.centres.fetch({ reset: true})
+					.fail(function(e) {
+						this.globalCh.commands.execute('show:message', { event: e });
+					}.bind(this));
 			},
 
 			executeShowDeals: function(centre) {
 				this.deals.centre = centre;
-				this.deals.fetch({ reset: true });
+				this.deals.fetch({ reset: true })
+					.fail(function(e) {
+						this.globalCh.commands.execute('show:message', { event: e });
+					}.bind(this));
+			},
+
+			executeShowMessage: function(attrs) {
+				this.rootView.message.show(new MessageView({ model: new Message(attrs) }));
 			},
 
 			setReqRes: function() {
 				this.globalCh.reqres.setHandler('locale', _.bind(this.reqResLocale, this));
 				this.globalCh.reqres.setHandler('mockup', _.bind(this.reqResMockup, this));
+				this.globalCh.reqres.setHandler('welcomeMessage', _.bind(this.reqResWelcomeMessage, this));
 			},
 
-			/** 
+			/**
 			* Returns if the app should be simulating the mockup
 			* @returns {Boolean}
 			*/
@@ -153,6 +170,14 @@ define([
 			*/
 			reqResLocale: function() {
 				return this.mockup ? 'en-AU' : navigator.language;
+			},
+
+			reqResWelcomeMessage: function() {
+				return {
+					title: 'Welcome',
+					type: 'info',
+					message: 'Welcome to the Westfield Deals portal. This web app was written in Backbone/Marionette in 2015. The api has since changed and functionality is limited.'
+				};
 			}
 		});
 	}

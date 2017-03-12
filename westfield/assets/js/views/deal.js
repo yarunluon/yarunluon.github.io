@@ -46,7 +46,12 @@ define(['marionette', 'moment'], function(Marionette, moment) {
 				},
 
 				getAvailableToLocale: function() {
-					return toLocaleDate(this.available_to);	
+					return toLocaleDate(this.available_to);
+				},
+
+				getLogoHref: function() {
+					// Force use of https
+					return this._links.retailer_logo.href.replace('http:', 'https:');
 				}
 			}
 		},

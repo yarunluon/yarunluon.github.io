@@ -5,7 +5,7 @@
   font-size: .9em; }
 
 .transition, .centre a:focus, .active .centre a:focus, .list-group-item.focus {
-  transition: outline ease-in-out 0.15s, background-color ease-in-out 0.15s; }
+  transition: outline ease-in-out .15s, background-color ease-in-out .15s; }
 
 /************************
 * Element styles
@@ -75,7 +75,7 @@ a:hover, a:focus {
   border-right: none;
   border-color: #66afe9;
   outline: 0;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }
 
 /************************
 * Centre styles
@@ -83,11 +83,11 @@ a:hover, a:focus {
 #centres-region {
   padding-top: 5px; }
 
-.panel {
+#centres-region .panel {
   border: none;
   margin-bottom: 1px; }
 
-.panel-default > .panel-heading {
+#centres-region .panel-default > .panel-heading {
   background-color: #242424;
   padding: 0;
   border-top-left-radius: 0;
@@ -100,7 +100,7 @@ a:hover, a:focus {
   .centre a:hover {
     background-color: #313131; }
   .centre a:focus {
-    outline: medium solid #0a0a0a;
+    outline: medium solid #0b0b0b;
     background-color: #3e3e3e; }
 
 .active .centre {
@@ -109,7 +109,7 @@ a:hover, a:focus {
     background-color: #e4382c; }
   .active .centre a:focus {
     outline: medium solid #ad2116;
-    background-color: #e74d42; }
+    background-color: #e74e42; }
   .active .centre .glyphicon-plus {
     display: none; }
   .active .centre .glyphicon-minus {
@@ -130,8 +130,7 @@ a:hover, a:focus {
 .list-group-item {
   border: none;
   margin-bottom: 5px; }
-  .list-group-item:hover,
-  .list-group-item:nth-child(odd):hover {
+  .list-group-item:hover, .list-group-item:nth-child(odd):hover {
     background-color: #f2f2f2; }
   .list-group-item:nth-child(odd) {
     background-color: #f8f8f8; }
