@@ -33,6 +33,7 @@
 		</div>
 		<div id="root-view" class="container-fluid">
 			<header>
+				<div id="message"></div>
 				<div id="banner-region"></div>
 				<div class="row">
 					<div class="col-sm-8">
@@ -65,7 +66,7 @@
 
 		<script id="deal-item-template" type="text/template">
 			<a href="javascript: void 0;">
-			<div class="container-fluid clearfix">				
+			<div class="container-fluid clearfix">
 				<div class="row">
 					<div class="col-sm-3 col-md-2 clearfix">
 						<img class="logo img-responsive" src="<%- _links.retailer_logo.href %>" alt="<%- _links.retailer.name %>">
@@ -107,7 +108,16 @@
 				</div>
 			</div>
 		</script>
-		
+
+		<script id="message-template" type="text/template">
+			<div class="panel-heading">
+				<%- title %>
+			</div>
+			<div class="panel-body">
+				<%- message %>
+			</div>
+		</script>
+
 		<script data-main="./assets/js/require_main" src="./assets/js/vendor/require.js"></script>
 
 		<script>
